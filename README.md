@@ -22,8 +22,6 @@ IPWatch überprüft in regelmäßigen Abständen die öffentliche IPv4-Adresse u
 ```text
 ipwatch/
 ├── ipwatch.py
-├── requirements.txt
-├── README.md
 ├── data/
 │   └── last_ip.txt
 └── logs/
@@ -92,7 +90,3 @@ python3 ipwatch.py
 ```
 
 Dadurch wird eine Änderung simuliert und der Mailversand ausgelöst.
-
-## Lizenz
-
-MIT
