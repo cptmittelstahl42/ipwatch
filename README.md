@@ -1,42 +1,40 @@
-### IPWatch
+# IPWatch
 
-Motivation
+## Motivation
 Viele Internetanschlüsse nutzen dynamische öffentliche IPv4-Adressen. Bei meinem Telekom-Glasfaseranschluss kann die Adresse monatelang unverändert bleiben und dann ohne Vorwarnung wechseln.
 
 Für Dienste wie VPN-Zugänge, DNS-Einträge und Portweiterleitungen ist ein solcher Wechsel relevant. Oft bemerke ich die Änderung erst dann, wenn eine Verbindung nicht mehr funktioniert.
 
-Lösung
+## Lösung
 IPWatch überprüft in regelmäßigen Abständen die öffentliche IPv4-Adresse und vergleicht sie mit der zuletzt bekannten Adresse.
 
-Wird eine Änderung erkannt:
+## Funktionen
 
-die neue Adresse wird gespeichert
-eine Benachrichtigungs-E-Mail wird versendet
-das Ereignis wird protokolliert
-Alle Aktionen werden in einer Logdatei festgehalten. Dadurch lässt sich auch nachträglich nachvollziehen, wann eine Adressänderung stattgefunden hat oder warum ein Versand fehlgeschlagen ist.
+- Ermittlung der öffentlichen IPv4-Adresse
+- Vergleich mit der zuletzt bekannten Adresse
+- E-Mail-Benachrichtigung bei Änderungen
+- Ausführliches Logging
+- Logrotation
+- Ausführung per Cron
 
-Funktionen
-Ermittlung der öffentlichen IPv4-Adresse über eine öffentliche API
-Vergleich mit der zuletzt bekannten Adresse
-Benachrichtigung per SMTP
-Unterstützung für TLS und SSL
-ausführliche Protokollierung
-automatische Logrotation
-geeignet für die Ausführung per Cron
-Verzeichnisstruktur
+## Verzeichnisstruktur
+
+```text
 ipwatch/
-    ipwatch.py
-        data/
-            last_ip.txt
-        logs/
-            ipwatch.log
+├── ipwatch.py
+├── requirements.txt
+├── README.md
+├── data/
+│   └── last_ip.txt
+└── logs/
+    └── ipwatch.log
+```
 
-    
-Konfiguration
-Die Konfiguration erfolgt direkt im Kopf der Datei ipwatch.py.
+## Konfiguration
 
-Beispiel:
+Die Konfiguration erfolgt direkt im Python-Skript.
 
+```python
 SMTP_SERVER = "smtp.strato.de"
 SMTP_PORT = 587
 
@@ -48,45 +46,53 @@ SMTP_USE_SSL = False
 
 MAIL_FROM = "monitor@example.de"
 MAIL_TO = "admin@example.de"
-Installation
+```
+
+## Installation
+
 Debian:
 
+```bash
 apt update
 apt install python3 python3-requests
-Alternativ:
+```
 
-pip install requests
-Ausführung
-Manueller Testlauf:
+## Testlauf
 
+```bash
 python3 ipwatch.py
-Automatische Ausführung
-Beispiel: stündliche Prüfung per Cron.
+```
 
+## Cronjob
+
+Stündliche Ausführung:
+
+```cron
 0 * * * * /usr/bin/python3 /opt/ipwatch/ipwatch.py
-Logging
-Das Skript schreibt alle Ereignisse in:
+```
 
-logs/ipwatch.log
-Protokolliert werden unter anderem:
+## Logging
 
-Start und Ende eines Laufs
-ermittelte öffentliche IP-Adresse
-letzte bekannte IP-Adresse
-erkannte Änderungen
-erfolgreicher Mailversand
-Fehler bei API-Aufrufen oder SMTP-Verbindungen
+Alle Ereignisse werden in `logs/ipwatch.log` protokolliert.
+
 Beispiel:
 
+```text
 2026-10-16 15:41:52 [INFO] Aktuelle IP: 217.231.80.252
 2026-10-16 15:41:52 [INFO] Letzte IP: 1.1.1.1
 2026-10-16 15:41:52 [WARNING] IP-Wechsel erkannt: 1.1.1.1 -> 217.231.80.252
 2026-10-16 15:41:52 [INFO] Benachrichtigungsmail erfolgreich versendet.
-Test einer Adressänderung
-Zum Test kann die gespeicherte IP-Adresse manuell verändert werden:
+```
 
+## Test einer IP-Änderung
+
+```bash
 echo "1.1.1.1" > data/last_ip.txt
-Anschließend:
-
 python3 ipwatch.py
-Das Skript erkennt die Abweichung und löst die Benachrichtigung aus.
+```
+
+Dadurch wird eine Änderung simuliert und der Mailversand ausgelöst.
+
+## Lizenz
+
+MIT
