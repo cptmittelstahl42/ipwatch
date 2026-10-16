@@ -33,7 +33,7 @@ ipwatch/
 Die Konfiguration erfolgt direkt im Python-Skript.
 
 ```python
-SMTP_SERVER = "smtp.strato.de"
+SMTP_SERVER = "smtp.smarthost.de"
 SMTP_PORT = 587
 
 SMTP_USER = "monitor@example.de"
@@ -76,9 +76,9 @@ Alle Ereignisse werden in `logs/ipwatch.log` protokolliert.
 Beispiel:
 
 ```text
-2026-10-16 15:41:52 [INFO] Aktuelle IP: 217.231.80.252
+2026-10-16 15:41:52 [INFO] Aktuelle IP: 8.8.8.8
 2026-10-16 15:41:52 [INFO] Letzte IP: 1.1.1.1
-2026-10-16 15:41:52 [WARNING] IP-Wechsel erkannt: 1.1.1.1 -> 217.231.80.252
+2026-10-16 15:41:52 [WARNING] IP-Wechsel erkannt: 1.1.1.1 -> 8.8.8.8
 2026-10-16 15:41:52 [INFO] Benachrichtigungsmail erfolgreich versendet.
 ```
 
