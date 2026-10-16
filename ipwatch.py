@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
-IPWatch - Überwachung der öffentlichen IPv4-Adresse.
-Versendet bei einer Änderung eine E-Mail.
+IPWatch - Überwachung der oeffentlichen IPv4-Adresse.
+Versendet bei einer Aenderung eine E-Mail.
 """
 
 import logging
@@ -14,16 +14,16 @@ from email.message import EmailMessage
 
 # Konfiguration
 
-SMTP_SERVER = "smtp.strato.de"
+SMTP_SERVER = "smtp.smarthost.com"
 SMTP_PORT = 587
-SMTP_USER = "smarthost@cooperlan.de"
-SMTP_PASSWORD = "hiqP2D1rOeF!!bIHXdLRf6"
+SMTP_USER = "irgendwas@domain.tld"
+SMTP_PASSWORD = "Passwort"
 
 SMTP_USE_TLS = True
 SMTP_USE_SSL = False
 
-MAIL_FROM = "info@cooperlan.de"
-MAIL_TO = "tboettcher2@freenet.de"
+MAIL_FROM = "from@mail.com"
+MAIL_TO = "to@mail.com"
 
 IP_API_URL = "https://api.ipify.org"
 
@@ -55,7 +55,7 @@ logger.addHandler(handler)
 # Funktionen
 
 def get_public_ip():
-    """Ermittelt die öffentliche IPv4-Adresse."""
+    """Ermittelt die oeffentliche IPv4-Adresse."""
 
     response = requests.get(IP_API_URL, timeout=10)
     response.raise_for_status()
@@ -83,10 +83,10 @@ def send_mail(old_ip, new_ip):
 
     msg["From"] = MAIL_FROM
     msg["To"] = MAIL_TO
-    msg["Subject"] = f"IP-Adresse geändert ({new_ip})"
+    msg["Subject"] = f"IP-Adresse geaendert ({new_ip})"
 
     msg.set_content(
-        f"""Die öffentliche IP-Adresse hat sich geändert.
+        f"""Die oeffentliche IP-Adresse hat sich geaendert.
 
 Alt: {old_ip}
 Neu: {new_ip}
@@ -143,7 +143,7 @@ def main():
             return
 
         if current_ip == old_ip:
-            logger.info("Keine Änderung festgestellt.")
+            logger.info("Keine Aenderung festgestellt.")
             return
 
         logger.warning(
@@ -161,7 +161,7 @@ def main():
     except Exception as ex:
 
         logger.exception(
-            f"Fehler während der Verarbeitung: {ex}"
+            f"Fehler waehrend der Verarbeitung: {ex}"
         )
 
 if __name__ == "__main__":
