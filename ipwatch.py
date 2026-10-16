@@ -16,14 +16,14 @@ from email.message import EmailMessage
 
 SMTP_SERVER = "smtp.strato.de"
 SMTP_PORT = 587
-SMTP_USER = "monitor@example.de"
-SMTP_PASSWORD = "PASSWORT"
+SMTP_USER = "smarthost@cooperlan.de"
+SMTP_PASSWORD = "hiqP2D1rOeF!!bIHXdLRf6"
 
 SMTP_USE_TLS = True
 SMTP_USE_SSL = False
 
-MAIL_FROM = "monitor@example.de"
-MAIL_TO = "tim@example.de"
+MAIL_FROM = "info@cooperlan.de"
+MAIL_TO = "tboettcher2@freenet.de"
 
 IP_API_URL = "https://api.ipify.org"
 
