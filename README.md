@@ -25,13 +25,13 @@ automatische Logrotation
 geeignet für die Ausführung per Cron
 Verzeichnisstruktur
 ipwatch/
-├── ipwatch.py
-├── README.md
-├── requirements.txt
-├── data/
-│   └── last_ip.txt
-└── logs/
-    └── ipwatch.log
+ipwatch.py
+    data/
+        last_ip.txt
+    logs/
+        ipwatch.log
+
+    
 Konfiguration
 Die Konfiguration erfolgt direkt im Kopf der Datei ipwatch.py.
 
