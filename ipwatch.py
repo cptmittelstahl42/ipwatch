@@ -27,8 +27,8 @@ MAIL_TO = "to@mail.com"
 
 IP_API_URL = "https://api.ipify.org"
 
-DATA_FILE = Path("./data/last_ip.txt")
-LOG_FILE = Path("./logs/ipwatch.log")
+DATA_FILE = Path("/opt/ipwatch/data/last_ip.txt")
+LOG_FILE = Path("/opt/ipwatch/logs/ipwatch.log")
 
 # Logging
 
