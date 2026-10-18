@@ -90,3 +90,10 @@ python3 ipwatch.py
 ```
 
 Dadurch wird eine Änderung simuliert und der Mailversand ausgelöst.
+
+## Lizenz
+Dieses Projekt steht unter der GNU General Public License v3.0 (GPLv3).
+
+Copyright (c) 2026 Tim Böttcher [cptmittelstahl42]
+
+Details siehe Datei LICENSE.
